@@ -68,12 +68,11 @@ public class Flower implements Serializable {
         this.color = color;
     }
 
+
     @Override
     public String toString() {
-        return "Flower{" +
-                "id=" + id +
-                ", price=" + price +
-                ", color='" + color + '\'' +
-                '}';
+        String output="price "+this.price +"\n"
+                +"color "+ this.color+"\n";
+        return  output;
     }
 }

@@ -34,6 +34,12 @@ public class PrimaryController {
 	private ImageView img3;
 
 	@FXML
+	private ImageView img4;
+
+	@FXML
+	private ImageView img5;
+
+	@FXML
 	private TextArea itemDesciption1;
 
 	@FXML
@@ -41,6 +47,12 @@ public class PrimaryController {
 
 	@FXML
 	private TextArea itemDesciption3;
+
+	@FXML
+	private TextArea itemDesciption4;
+
+	@FXML
+	private TextArea itemDesciption5;
 
 	@FXML
 	private TextField newPriceText1;
@@ -52,6 +64,12 @@ public class PrimaryController {
 	private TextField newPriceText3;
 
 	@FXML
+	private TextField newPriceText4;
+
+	@FXML
+	private TextField newPriceText5;
+
+	@FXML
 	private TextField text1;
 
 	@FXML
@@ -61,6 +79,12 @@ public class PrimaryController {
 	private TextField text3;
 
 	@FXML
+	private TextField text4;
+
+	@FXML
+	private TextField text5;
+
+	@FXML
 	private Button updatePrice1;
 
 	@FXML
@@ -68,6 +92,12 @@ public class PrimaryController {
 
 	@FXML
 	private Button updatePrice3;
+
+	@FXML
+	private Button updatePrice4;
+
+	@FXML
+	private Button updatePrice5;
 
 	@FXML
 	public void updatePrice (ActionEvent event){
@@ -83,10 +113,20 @@ public class PrimaryController {
 				SimpleClient.getClient().sendToServer(msg);
 				newPriceText2.clear();
 			}
-			else {
+			else if(event.getSource().equals(updatePrice3)) {
 				MsgClass msg = new MsgClass("#update  3 "+newPriceText3.getText());
 				SimpleClient.getClient().sendToServer(msg);
 				newPriceText3.clear();
+			}
+			else if(event.getSource().equals(updatePrice4)) {
+				MsgClass msg = new MsgClass("#update  4 "+newPriceText4.getText());
+				SimpleClient.getClient().sendToServer(msg);
+				newPriceText4.clear();
+			}
+			else{
+				MsgClass msg = new MsgClass("#update  5 "+newPriceText5.getText());
+				SimpleClient.getClient().sendToServer(msg);
+				newPriceText5.clear();
 			}
 		}
 		catch (Exception e){
@@ -111,11 +151,15 @@ public class PrimaryController {
 		assert updatePrice2 != null : "fx:id=\"updatePrice2\" was not injected: check your FXML file 'primary.fxml'.";
 		assert updatePrice3 != null : "fx:id=\"updatePrice3\" was not injected: check your FXML file 'primary.fxml'.";
 		itemDesciption1.setText(((ArrayList<Flower>)data).get(0).toString());
-		img1.setImage(new Image("https://www.ubuy.co.it/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzFMZDg1T1gxVUwuX1NMMTUwMF8uanBn.jpg"));
+		img1.setImage(new Image(((ArrayList<Flower>)data).get(0).getImgURL()));
 		itemDesciption2.setText(((ArrayList<Flower>)data).get(1).toString());
-		img2.setImage(new Image("https://st3.depositphotos.com/9984576/12916/i/950/depositphotos_129169782-stock-photo-green-flower-on-a-black.jpg"));
+		img2.setImage(new Image(((ArrayList<Flower>)data).get(1).getImgURL()));
 		itemDesciption3.setText(((ArrayList<Flower>)data).get(2).toString());
-		img3.setImage(new Image("http://blueflower.io/wp-content/uploads/2017/11/cropped-veronika-lykova-299582.jpg"));
+		img3.setImage(new Image(((ArrayList<Flower>)data).get(2).getImgURL()));
+		itemDesciption4.setText(((ArrayList<Flower>)data).get(3).toString());
+		img4.setImage(new Image(((ArrayList<Flower>)data).get(3).getImgURL()));
+		itemDesciption5.setText(((ArrayList<Flower>)data).get(4).toString());
+		img5.setImage(new Image(((ArrayList<Flower>)data).get(4).getImgURL()));
 	}
 
 }

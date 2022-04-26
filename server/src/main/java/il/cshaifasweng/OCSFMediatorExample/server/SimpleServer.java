@@ -37,23 +37,20 @@ public class SimpleServer extends AbstractServer {
     }
 
     private static void generateFlowers() {
-        Flower flower1 = new Flower(50, "red");
+        Flower flower1 = new Flower(50, "red","https://images.unsplash.com/photo-1569101315919-dafea4df33ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVkJTIwZmxvd2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
         session.save(flower1);
         session.flush();
-        Flower flower2 = new Flower(45, "green");
+        Flower flower2 = new Flower(45, "green","https://www.allaboutgardening.com/wp-content/uploads/2021/10/Carnation.jpg");
         session.save(flower2);
         session.flush();
-        Flower flower3 = new Flower(30, "blue");
+        Flower flower3 = new Flower(30, "blue","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzjZZ9dDZzh6zb3fbq8g4MpK8ybBNNQ9TzEg&usqp=CAU");
         session.save(flower3);
         session.flush();
-        Flower flower4 = new Flower(55, "purple");
+        Flower flower4 = new Flower(55, "purple","https://upload.wikimedia.org/wikipedia/commons/9/9c/Purple_Flower_%22Pensamiento%22_Viola_%C3%97_wittrockiana.JPG");
         session.save(flower4);
         session.flush();
-        Flower flower5 = new Flower(20, "yellow");
+        Flower flower5 = new Flower(20, "yellow","https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/yellow-flower-dahlia-1587061007.jpg?crop=0.557xw:1.00xh;0.0569xw,0&resize=480:*");
         session.save(flower5);
-        session.flush();
-        Flower flower6 = new Flower(25, "white");
-        session.save(flower6);
         session.flush();
     }
 
