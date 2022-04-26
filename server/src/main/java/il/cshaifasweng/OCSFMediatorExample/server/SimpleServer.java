@@ -75,9 +75,13 @@ public class SimpleServer extends AbstractServer {
 				.build();
 		return configuration.buildSessionFactory(serviceRegistry);
 	}
-	private static void updatePrice(Flower flower,int price){
-		session.get(Flower.class,flower.getId()).setPrice(price);
+	private static void updatePrice(Flower flower,int price) {
+		//System.out.println(price);
+		//System.out.println(flower);
+		session.beginTransaction();
+		flower.setPrice(price);
 		session.update(flower);
+		//System.out.println(flower);
 		session.getTransaction().commit();
 	}
 
@@ -101,9 +105,26 @@ public class SimpleServer extends AbstractServer {
 				e.printStackTrace();
 			}
 		}
+		if(msgString.startsWith("#update")){
+			try {
+				int id=Integer.parseInt(String.valueOf(msgString.charAt(9)));
+				int price=Integer.parseInt(msgString.substring(11));
+
+
+				//System.out.println(msgString);
+				//System.out.println((msgString.charAt(9)));
+				//System.out.println(msgString.substring(11));
+				updatePrice(session.get(Flower.class,id),price);
+				client.sendToClient(session.get(Flower.class,id).toString());
+			}
+			catch (Exception e){
+
+			}
+
+
+		}
 		if (msgString.startsWith("#close")){
 			session.close();
 		}
 	}
-
 }
