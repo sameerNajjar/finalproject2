@@ -1,20 +1,33 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 import javax.persistence.*;
 import java.awt.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "Flowers")
-public class Flower {
+public class Flower implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int price;
     @Column(name="Color")
     private String color;
+    private String imgURL;
 
+    public Flower(int price, String color, String imgURL) {
+        this.price = price;
+        this.color = color;
+        this.imgURL = imgURL;
+    }
 
+    public String getImgURL() {
+        return imgURL;
+    }
 
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
 
     public Flower() {
     }

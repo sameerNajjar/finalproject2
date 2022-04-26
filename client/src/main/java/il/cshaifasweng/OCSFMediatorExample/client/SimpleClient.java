@@ -1,5 +1,7 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
+import il.cshaifasweng.OCSFMediatorExample.entities.Flower;
+import il.cshaifasweng.OCSFMediatorExample.entities.MsgClass;
 import org.greenrobot.eventbus.EventBus;
 
 import il.cshaifasweng.OCSFMediatorExample.client.ocsf.AbstractClient;
@@ -8,6 +10,8 @@ import il.cshaifasweng.OCSFMediatorExample.entities.Warning;
 public class SimpleClient extends AbstractClient {
 	
 	private static SimpleClient client = null;
+	public static  Object data;
+
 
 	private SimpleClient(String host, int port) {
 		super(host, port);
@@ -15,13 +19,25 @@ public class SimpleClient extends AbstractClient {
 
 	@Override
 	protected void handleMessageFromServer(Object msg) {
-		if (msg.getClass().equals(Warning.class)) {
-			EventBus.getDefault().post(new WarningEvent((Warning) msg));
+			if (msg.getClass().equals(MsgClass.class)) {
+				MsgClass myMsg = (MsgClass) msg;
+				if (myMsg.getObj().getClass().equals(Warning.class)) {
+					EventBus.getDefault().post(new WarningEvent((Warning) msg));
+				}
+				if (myMsg.getMsg().equals("all flowers")) {
+					data = myMsg.getObj();
+					try {
+						App.setRoot("primary");
+					}
+					catch (Exception e){
+						System.out.println("get all execption");
+						System.out.println(e);
+					}
+				}
 		}
-		if(msg.getClass().equals(String.class)){
-
-		}
-
+			else{
+				System.out.println("not done yet");
+			}
 	}
 	
 	public static SimpleClient getClient() {
@@ -30,5 +46,4 @@ public class SimpleClient extends AbstractClient {
 		}
 		return client;
 	}
-
 }
