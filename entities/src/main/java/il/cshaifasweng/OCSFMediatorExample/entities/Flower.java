@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 import javax.persistence.*;
+import java.awt.*;
 
 
 @Entity
@@ -11,6 +12,9 @@ public class Flower {
     private int price;
     @Column(name="Color")
     private String color;
+
+
+
 
     public Flower() {
     }
