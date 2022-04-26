@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
+import il.cshaifasweng.OCSFMediatorExample.entities.MsgClass;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -27,15 +28,14 @@ public class App extends Application {
     	EventBus.getDefault().register(this);
     	client = SimpleClient.getClient();
     	client.openConnection();
+        MsgClass msg =new MsgClass("#get phots URL",null);
+        client.sendToServer(msg);
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
-
-
-
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
